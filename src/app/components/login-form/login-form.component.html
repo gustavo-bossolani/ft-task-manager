@@ -59,6 +59,11 @@
         </p>
     </div>
 
+
+    <ng-content
+      select="[message]">
+    </ng-content>
+
     <button
       [disabled]="!loginForm.valid"
       [ngClass]="

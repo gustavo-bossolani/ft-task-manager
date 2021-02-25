@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 
 @Component({
   selector: 'app-login-form',
@@ -7,6 +9,11 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
+
+  @Output()
+  handleUserFormSubmit = new EventEmitter<UserLoginFormDto>();
+
+  private user = new UserLoginFormDto();
 
   loginForm = this.builder.group({
     username: ['', [ Validators.required ]],
@@ -23,7 +30,13 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void { }
 
   handleSubmit() {
-    console.log(this.loginForm.value);
+    const { password, username } = this.loginForm.value;
+    Object.assign(this.user, {
+      password,
+      username
+    });
+
+    this.handleUserFormSubmit.emit(this.user);
   }
 
   resolveFieldError(field: string): boolean {

@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UserLoginService } from 'src/app/services/user-login.service';
+import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 
 @Component({
   selector: 'app-card-login',
@@ -15,14 +18,31 @@ export class CardLoginComponent implements OnInit {
     password: ['', [ Validators.required ]]
   });
 
+  // TODO ajustar status de autenticação
+  isAuthenticated: boolean = true;
+  errorMessage: string = '';
+
   constructor(
     private builder: FormBuilder,
+    private userAuthService: UserLoginService
   ) { }
 
   ngOnInit(): void { }
 
-  handleSubmit() {
-    console.log(this.loginForm.value);
+  handleSubmit(authenticatedUser : UserLoginFormDto) {
+    console.log(authenticatedUser);
+
+    this.userAuthService.authenticateUser(authenticatedUser)
+      .subscribe(response => {
+        this.isAuthenticated = true;
+        console.log(response.accessToken);
+
+      }, ({ error }: HttpErrorResponse) => {
+        console.log(error);
+
+        this.isAuthenticated = false;
+        this.errorMessage = error.message;
+      });
   }
 
 }

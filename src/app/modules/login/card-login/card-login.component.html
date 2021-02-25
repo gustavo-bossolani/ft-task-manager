@@ -6,13 +6,13 @@
       Task Management
     </h2>
 
-    <form
-      class="flex flex-col"
-      (ngSubmit)="handleSubmit()">
-
-      <app-login-form></app-login-form>
-
-    </form>
+    <app-login-form (handleUserFormSubmit)="handleSubmit($event)">
+      <p
+        message
+        class="text-red-500 font-medium tracking-wide antialiased text-base"
+        *ngIf="!isAuthenticated">{{ errorMessage }}
+      </p>
+    </app-login-form>
 
   </mat-card>
 
