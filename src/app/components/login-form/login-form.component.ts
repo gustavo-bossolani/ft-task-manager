@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserLoginFormSubmitDto } from 'src/models/user-login-form-submit.dto';
 
 import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 
@@ -11,9 +12,10 @@ import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 export class LoginFormComponent implements OnInit {
 
   @Output()
-  handleUserFormSubmit = new EventEmitter<UserLoginFormDto>();
+  handleUserFormSubmit = new EventEmitter<UserLoginFormSubmitDto>();
 
-  private user = new UserLoginFormDto();
+  @Input()
+  isLoading = false;
 
   loginForm = this.builder.group({
     username: ['', [ Validators.required ]],
@@ -22,6 +24,8 @@ export class LoginFormComponent implements OnInit {
       Validators.pattern(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)
     ]]
   });
+
+  private user = new UserLoginFormDto();
 
   constructor(
     private builder: FormBuilder,
@@ -36,7 +40,10 @@ export class LoginFormComponent implements OnInit {
       username
     });
 
-    this.handleUserFormSubmit.emit(this.user);
+    this.handleUserFormSubmit.emit({
+      user: this.user,
+      loginForm: this.loginForm
+    });
   }
 
   resolveFieldError(field: string): boolean {

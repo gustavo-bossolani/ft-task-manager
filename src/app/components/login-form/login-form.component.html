@@ -59,12 +59,15 @@
         </p>
     </div>
 
-
     <ng-content
-      select="[message]">
+      *ngIf="!loginForm.dirty"
+      select="[errorMessage]">
     </ng-content>
 
+    <app-loader *ngIf="isLoading"></app-loader>
+
     <button
+      *ngIf="!isLoading"
       [disabled]="!loginForm.valid"
       [ngClass]="
       {

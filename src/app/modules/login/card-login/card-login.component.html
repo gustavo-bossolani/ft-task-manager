@@ -6,9 +6,11 @@
       Task Management
     </h2>
 
-    <app-login-form (handleUserFormSubmit)="handleSubmit($event)">
+    <app-login-form
+      (handleUserFormSubmit)="handleSubmit($event)"
+      [isLoading]="isLoading">
       <p
-        message
+        errorMessage
         class="text-red-500 font-medium tracking-wide antialiased text-base"
         *ngIf="!isAuthenticated">{{ errorMessage }}
       </p>

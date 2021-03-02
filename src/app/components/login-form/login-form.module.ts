@@ -1,3 +1,4 @@
+import { LoaderComponent } from './../loader/loader.component';
 import { LoginFormComponent } from './login-form.component';
 
 import { NgModule } from '@angular/core';
@@ -6,7 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    LoginFormComponent
+    LoginFormComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,

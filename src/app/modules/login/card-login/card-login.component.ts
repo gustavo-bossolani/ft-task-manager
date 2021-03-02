@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserLoginService } from 'src/app/services/user-login.service';
+import { UserLoginFormSubmitDto } from 'src/models/user-login-form-submit.dto';
 import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 
 @Component({
@@ -11,16 +12,10 @@ import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 })
 export class CardLoginComponent implements OnInit {
 
-  //TODO trocar spinner por progress bar
-
-  loginForm = this.builder.group({
-    username: ['', [ Validators.required ]],
-    password: ['', [ Validators.required ]]
-  });
-
   // TODO ajustar status de autenticação
   isAuthenticated: boolean = true;
   errorMessage: string = '';
+  isLoading = false;
 
   constructor(
     private builder: FormBuilder,
@@ -29,20 +24,33 @@ export class CardLoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  handleSubmit(authenticatedUser : UserLoginFormDto) {
-    console.log(authenticatedUser);
+  handleSubmit(submitData : UserLoginFormSubmitDto) {
 
-    this.userAuthService.authenticateUser(authenticatedUser)
+    const { user, loginForm } = submitData;
+
+    this.isLoading = true;
+
+    !this.isAuthenticated ? true : this.isAuthenticated;
+
+    this.userAuthService.authenticateUser(user)
       .subscribe(response => {
         this.isAuthenticated = true;
         console.log(response.accessToken);
 
-      }, ({ error }: HttpErrorResponse) => {
-        console.log(error);
+        this.isLoading = false;
 
+        // TODO redirecionamento para o dashboard
+        // TODO salvar jwt
+
+      }, ({ error }: HttpErrorResponse) => {
         this.isAuthenticated = false;
-        this.errorMessage = error.message;
+        this.errorMessage = error.message || 'Erro ao realizar login.';
+        this.isLoading = false;
+        loginForm.reset();
+
       });
+
+
   }
 
 }
