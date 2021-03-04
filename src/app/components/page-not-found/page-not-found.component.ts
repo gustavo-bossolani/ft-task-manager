@@ -1,3 +1,5 @@
+import { interval, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  counter = 0;
+
+  private timer = 7000;
+
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.redirectToMainPage();
+  }
+
+  redirectToMainPage() {
+
+    this.counter = this.timer / 1000;
+
+    const interval = setInterval (() => {
+      this.counter --;
+
+      if (this.counter <= 0) {
+        clearInterval(interval);
+        this.router.navigate(['/dashboard']);
+      }
+    }, 1000);
+
+
   }
 
 }

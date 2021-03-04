@@ -1,1 +1,31 @@
-<p>page-not-found works!</p>
+<div class="font-sans flex flex-col items-center justify-center h-full p-16">
+
+  <div>
+    <p class="text-3xl text-gray-600">Página não encontrada</p>
+    <p class="text-gray-400 text-base">
+      Você será redirecionado em
+      <span class="animate-ping text-red-600">
+        {{ counter }}
+      </span> segundos.
+    </p>
+
+    <div class="flex items-center">
+      <mat-icon class="text-blue-500">keyboard_backspace</mat-icon>
+      <a routerLink="/dashboard" class="text-blue-500 font-medium">
+        Me leve de volta agora!
+      </a>
+    </div>
+  </div>
+
+  <div class="
+    text-gray-200
+    bg-red-700
+    items-center
+    rounded-full
+    flex m-16
+    w-44 h-44
+    justify-center">
+    <p class="text-8xl font-mono">404</p>
+  </div>
+
+</div>

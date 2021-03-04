@@ -13,7 +13,7 @@ export class AuthService {
   ) { }
 
   saveToken(token: string) {
-    this.cookieService.set(this.tokenKey, token, { expires: 3 });
+    this.cookieService.set(this.tokenKey, token);
   }
 
   getToken() {
