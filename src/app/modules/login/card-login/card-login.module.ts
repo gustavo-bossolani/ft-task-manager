@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { LoginFormModule } from './../../../components/login-form/login-form.module';
 import { MatCardModule } from '@angular/material/card';
 
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MatCardModule,
     ReactiveFormsModule,
-    LoginFormModule
+    LoginFormModule,
+    RouterModule
   ],
   exports: [
     CardLoginComponent

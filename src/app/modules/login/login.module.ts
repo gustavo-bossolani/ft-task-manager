@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CardLoginModule } from './card-login/card-login.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     CardLoginModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
     LoginComponent
