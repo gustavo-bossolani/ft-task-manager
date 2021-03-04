@@ -8,7 +8,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 export class LoaderComponent implements OnInit {
 
   @Input()
-  type: 'small' | 'medium'| 'large' = 'medium';
+  type: 'small' | 'medium'| 'large' | 'smallest' = 'medium';
 
   componentSettings = {
     smallest: {
