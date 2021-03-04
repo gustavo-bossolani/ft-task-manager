@@ -1,4 +1,5 @@
-import { RouterModule } from '@angular/router';
+import { UserLoginService } from './../../services/user-login.service';
+import { LoginRoutingModule } from './login-routing.module';
 import { CardLoginModule } from './card-login/card-login.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,9 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     CardLoginModule,
     HttpClientModule,
+    LoginRoutingModule
   ],
   exports: [
     LoginComponent
   ],
+  providers: [
+    UserLoginService
+  ]
 })
 export class LoginModule { }

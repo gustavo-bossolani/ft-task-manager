@@ -41,7 +41,7 @@ export class CardLoginComponent implements OnInit {
 
         this.isLoading = false;
 
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard']);
         this.authService.saveToken(response.accessToken);
 
       }, ({ error }: HttpErrorResponse) => {

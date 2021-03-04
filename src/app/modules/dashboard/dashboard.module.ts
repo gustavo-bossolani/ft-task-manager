@@ -1,3 +1,4 @@
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ import { DashboardComponent } from './dashboard.component';
     NewTaskComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DashboardRoutingModule
   ],
   exports: [
     DashboardComponent,

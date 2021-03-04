@@ -1,15 +1,32 @@
+import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './modules/login/login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: PageNotFoundComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'login',
+    loadChildren: () => import('./modules/login/login.module').then(module => module.LoginModule),
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'register',
+    component: PageNotFoundComponent
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(module => module.DashboardModule),
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
