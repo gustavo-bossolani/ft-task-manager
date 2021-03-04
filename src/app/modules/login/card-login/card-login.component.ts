@@ -1,10 +1,10 @@
+import { AuthService } from './../../../services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserLoginService } from 'src/app/services/user-login.service';
 import { UserLoginFormSubmitDto } from 'src/models/user-login-form-submit.dto';
-import { UserLoginFormDto } from 'src/models/user-login-form.dto';
-
 @Component({
   selector: 'app-card-login',
   templateUrl: './card-login.component.html',
@@ -12,14 +12,16 @@ import { UserLoginFormDto } from 'src/models/user-login-form.dto';
 })
 export class CardLoginComponent implements OnInit {
 
+
   // TODO ajustar status de autenticação
   isAuthenticated: boolean = true;
   errorMessage: string = '';
   isLoading = false;
 
   constructor(
-    private builder: FormBuilder,
-    private userAuthService: UserLoginService
+    private userAuthService: UserLoginService,
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void { }
@@ -39,8 +41,8 @@ export class CardLoginComponent implements OnInit {
 
         this.isLoading = false;
 
-        // TODO redirecionamento para o dashboard
-        // TODO salvar jwt
+        this.router.navigate(['/dashboard']);
+        this.authService.saveToken(response.accessToken);
 
       }, ({ error }: HttpErrorResponse) => {
         this.isAuthenticated = false;

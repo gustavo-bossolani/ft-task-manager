@@ -64,10 +64,8 @@
       select="[errorMessage]">
     </ng-content>
 
-    <app-loader *ngIf="isLoading"></app-loader>
-
     <button
-      *ngIf="!isLoading"
+      *ngIf="!isLoading; else loading"
       [disabled]="!loginForm.valid"
       [ngClass]="
       {
@@ -77,6 +75,10 @@
       class="shadow rounded p-2 m-3 w-20 font-semibold">
       Login
     </button>
+
+    <ng-template #loading>
+      <app-loader></app-loader>
+    </ng-template>
 
   </form>
 
