@@ -6,6 +6,7 @@ import { LoginComponent } from './modules/login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: PageNotFoundComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: '**', component: PageNotFoundComponent }
