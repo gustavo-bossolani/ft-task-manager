@@ -17,24 +17,6 @@ export class PageNotFoundComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
-    this.redirectToMainPage();
-  }
-
-  redirectToMainPage() {
-
-    this.counter = this.timer / 1000;
-
-    const interval = setInterval (() => {
-      this.counter --;
-
-      if (this.counter <= 0) {
-        clearInterval(interval);
-        this.router.navigate(['/dashboard']);
-      }
-    }, 1000);
-
-
-  }
+  ngOnInit(): void { }
 
 }
