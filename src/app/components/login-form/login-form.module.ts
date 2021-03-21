@@ -1,4 +1,4 @@
-import { LoaderComponent } from './../loader/loader.component';
+import { LoaderModule } from './../loader/loader.module';
 import { LoginFormComponent } from './login-form.component';
 
 import { NgModule } from '@angular/core';
@@ -8,11 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     LoginFormComponent,
-    LoaderComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoaderModule
   ],
   exports: [
     LoginFormComponent

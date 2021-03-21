@@ -1,6 +1,5 @@
 import { RouterModule } from '@angular/router';
 import { LoginFormModule } from './../../../components/login-form/login-form.module';
-import { MatCardModule } from '@angular/material/card';
 
 import { CardLoginComponent } from './card-login.component';
 import { NgModule } from '@angular/core';
@@ -14,7 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    MatCardModule,
     ReactiveFormsModule,
     LoginFormModule,
     RouterModule
