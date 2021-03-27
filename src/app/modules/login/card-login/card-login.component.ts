@@ -37,8 +37,6 @@ export class CardLoginComponent implements OnInit {
     this.userAuthService.authenticateUser(user)
       .subscribe(response => {
         this.isAuthenticated = true;
-        console.log(response.accessToken);
-
         this.isLoading = false;
 
         this.router.navigate(['dashboard']);

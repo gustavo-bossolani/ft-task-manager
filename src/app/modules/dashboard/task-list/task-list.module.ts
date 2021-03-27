@@ -1,3 +1,6 @@
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoaderModule } from './../../../components/loader/loader.module';
 import { TaskListItemComponent } from './task-list-item/task-list-item.component';
 import { TaskListComponent } from './task-list.component';
@@ -12,7 +15,10 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule,
-    LoaderModule
+    LoaderModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     TaskListComponent,

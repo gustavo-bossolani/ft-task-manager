@@ -1,3 +1,4 @@
+import { PageNotFoundModule } from './components/page-not-found/page-not-found.module';
 import { SharedModule } from './shared/shared.module';
 import { GenericErrorHandler } from './shared/error/generic-error-handler';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +17,8 @@ import { MaterialModule } from './materia.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    PageNotFoundModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: GenericErrorHandler }
