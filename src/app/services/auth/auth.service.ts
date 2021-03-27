@@ -12,12 +12,19 @@ export class AuthService {
     private cookieService: CookieService
   ) { }
 
-  saveToken(token: string) {
+  saveToken(token: string): void {
     this.cookieService.set(this.tokenKey, token);
   }
 
-  getToken() {
+  getToken(): string {
     return this.cookieService.get(this.tokenKey);
+  }
+
+  invalidateToken(): void {
+    const token = this.getToken();
+    if (token) {
+      this.cookieService.delete(this.tokenKey);
+    }
   }
 
 }

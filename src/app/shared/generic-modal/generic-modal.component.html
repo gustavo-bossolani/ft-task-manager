@@ -1,0 +1,29 @@
+<div class="h-full">
+
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+
+  <div mat-dialog-content class="mat-typography" [ngClass]="{ 'h-2/4': !!data.content }">
+    <p class="font-light">
+      {{ data.content }}
+    </p>
+  </div>
+
+  <hr>
+
+  <div mat-dialog-actions class="flex justify-end align-middle">
+    <button
+      [class]="styles[data?.negativeButtonStyle || 'none']"
+      mat-button
+      mat-dialog-close>
+      {{ data.negativeButtonLabel }}
+  </button>
+
+  <button
+    [class]="styles[data?.positiveButtonStyle || 'none']"
+    mat-button
+    [mat-dialog-close]="true">
+    {{ data.positiveButtonLabel }}
+  </button>
+  </div>
+
+</div>

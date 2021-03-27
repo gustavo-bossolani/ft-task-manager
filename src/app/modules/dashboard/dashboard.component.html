@@ -3,8 +3,11 @@
   <div class="w-full shadow mb-10 p-2 flex justify-between">
 
     <div class="flex flex-col">
-      <p class="font-semibold text-3xl m-0">Dashboard</p>
-      <p class="text-sm tracking-wide">Create and edit your tasks.</p>
+      <p class="font-medium text-3xl m-0 text-red-500 flex items-center">
+        <mat-icon>format_indent_increase</mat-icon>
+        Dashboard
+      </p>
+      <p class="font-light text-sm tracking-wide">Create and edit your tasks.</p>
     </div>
 
     <div class="flex items-center">
@@ -14,7 +17,8 @@
           hover:bg-red-600
           hadow rounded
           m-1 w-16 h-10
-          font-semibold">
+          font-semibold"
+          (click)="logout()">
         Logout
       </button>
     </div>
